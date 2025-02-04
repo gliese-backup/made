@@ -1,8 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@heroui/react";
+import { io } from "socket.io-client";
+
+const socket = io(
+  "https://obscure-sniffle-g47pqw6gr9qqhvqgx-8000.app.github.dev/"
+);
 
 function Emote() {
   const [emoji, setEmoji] = useState("😈");
+
+  useEffect(() => {
+    socket.on("new_emoji", (emoji) => {
+      setEmoji(emoji);
+    });
+  }, []);
 
   return (
     <div className="min-h-screen flex justify-center items-center flex-col gap-5">
@@ -25,7 +36,10 @@ function EmojiSelect({ setEmoji }) {
             key={index}
             variant="flat"
             className="text-2xl"
-            onPress={() => setEmoji(emoji)}
+            onPress={() => {
+              setEmoji(emoji);
+              socket.emit("emoji", emoji);
+            }}
           >
             {emoji}
           </Button>
