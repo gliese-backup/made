@@ -6,7 +6,7 @@ const app = express();
 const server = http.createServer(app);
 
 app.get("/", (req, res) => {
-  res.send("Hey there");
+  res.send("Server is up and running!");
 });
 
 const io = new Server(server, {
@@ -20,10 +20,13 @@ io.on("connection", (socket) => {
   console.log("Someone connected! 😈", socket.id);
 
   socket.on("emoji", (data) => {
-    io.emit("new_emoji", data);
+    socket.broadcast.emit("new_emoji", data);
+    // socket.broadcast.emit (only leaving the one that sent)
+    // io.emit (send to everyone)
+    // socket.emit (to send back to the one that started)
   });
 });
 
 server.listen(8000, () => {
-  console.log(`Server is up and running!`);
+  console.log(`Server started, listening on port 8000!`);
 });

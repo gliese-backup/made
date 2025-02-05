@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@heroui/react";
 import { io } from "socket.io-client";
 
-const socket = io(
-  "https://obscure-sniffle-g47pqw6gr9qqhvqgx-8000.app.github.dev/"
-);
+const socket = io("http://localhost:8000");
 
 function Emote() {
   const [emoji, setEmoji] = useState("😈");
@@ -25,8 +23,6 @@ function Emote() {
 
 function EmojiSelect({ setEmoji }) {
   const emojis = "😀,😈,😑,🤨,🙁,😠,🫢,👻".split(",");
-
-  console.log(emojis);
 
   return (
     <div className="flex gap-1 flex-wrap justify-center">
