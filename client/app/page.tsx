@@ -1,11 +1,11 @@
 "use client";
-import { Button, HeroUIProvider } from "@heroui/react";
-import Emote from "@/components/Emote";
+import { HeroUIProvider } from "@heroui/react";
+import { Messages, Inputs, Chat, SignUp } from "@/components";
 
 export default function Home() {
   return (
     <HeroUIProvider>
-      <Emote />
+      <SignUp />
     </HeroUIProvider>
   );
 }

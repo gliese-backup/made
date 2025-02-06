@@ -6,16 +6,15 @@ const app = express();
 const server = http.createServer(app);
 
 app.get("/", (req, res) => {
-  res.send("Hey there");
+  res.send("Server is up & running!");
 });
 
 const io = new Server(server, {
   cors: {
     origin: "*",
   },
-}); // Socket.io ko instantiate kar diya
+});
 
-// Jab bhi koi client connect karega
 io.on("connection", (socket) => {
   console.log("Someone connected! 😈", socket.id);
 
