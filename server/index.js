@@ -6,11 +6,7 @@ const app = express();
 const server = http.createServer(app);
 
 app.get("/", (req, res) => {
-<<<<<<< HEAD
   res.send("Server is up & running!");
-=======
-  res.send("Server is up and running!");
->>>>>>> 2aebaa9ec1eab1c334efa0c27d145bfcdd750672
 });
 
 const io = new Server(server, {
